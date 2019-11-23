@@ -6,16 +6,19 @@
  * http://arcfn.com
  */
 
+
 #include <IRremote.h>
 
-IRrecv irrecv;
+IRsend irsend;
 
 void setup()
 {
-  Serial.begin(115200);
 }
 
 void loop() {
-  if (irrecv.isIdle())
-  Serial.println("Idling");
+	for (int i = 0; i < 3; i++) {
+		irsend.sendSony(0xa90, 12);
+		delay(40);
+	}
+	delay(5000); //5 second delay between each signal burst
 }
